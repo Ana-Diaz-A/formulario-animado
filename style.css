@@ -1,0 +1,272 @@
+body {
+  background: linear-gradient(45deg, #1830bb, #7da2e6); /*degradado de fondo*/
+  font-family: sans-serif;
+}
+
+.contact-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+/*BOTÓN DE ANIMACIÓN*/
+.flip-card {
+  border-radius: 0.5em;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  width: 5em;
+  padding: 0.5em;
+  border: 0.2em solid #7b86a3; /*borde*/
+  color: #fff; /*color del texto*/
+  text-align: center;
+  cursor: pointer;
+  z-index: 9;
+}
+/*SOBRE*/
+.envelope {
+  position: relative;
+  display: block;
+  width: 30em;
+  height: 35em;
+  margin: 0 auto;
+}
+
+.envelope.active .content {
+  padding: 15em 2em 2em;
+}
+
+/*ANIMACIÓN DEL SOBRE*/
+.envelope.active .paper.front,
+.envelope.active .paper.back {
+  animation-duration: 1.5s;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.envelope.active .paper.front {
+  animation-name: envelope-front;
+}
+
+.envelope.active .paper.back {
+  animation-name: envelope-back;
+}
+
+.envelope.active .paper.back:before {
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 1.25s;
+  animation-name: envelope-back-before;
+}
+
+.envelope.active .bottom-wrapper {
+  transform: rotateX(180deg);
+}
+
+.envelope.active .bottom-wrapper:after {
+  z-index: 0;
+  opacity: 1;
+}
+
+.envelope .content {
+  padding: 2em;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 9;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 1s;
+}
+
+/*SOBRE DELANTE*/
+.envelope .top-wrapper,
+.envelope .bottom-wrapper {
+  box-sizing: border-box;
+  background: #7b86a3; /*color de fondo*/
+  color: #fff; /*color del texto*/
+}
+
+.envelope .top-wrapper {
+  padding: 2em 2em 0;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.envelope .bottom-wrapper {
+  padding: 0 2em 2em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  transition: all 0.5s ease-in-out;
+  transform-origin: top;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  margin-top: -1px;
+}
+
+/*SOBRE DETRÁS*/
+.envelope .bottom-wrapper:after {
+  position: absolute;
+  content: '';
+  display: block;
+  opacity: 0;
+  background: #7b86a3; /*color de fondo*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/*FORMULARIO DEL SOBRE*/
+.envelope form label {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+.envelope form input,
+.envelope form textarea {
+  width: 100%;
+  box-shadow: 0;
+  background: transparent;
+  color: #fff; /*color del texto*/
+}
+
+.envelope form input {
+  border-width: 0 0 0.1em;
+  border-color: #fff; /*color del borde*/
+  border-style: solid;
+}
+
+.envelope form textarea {
+  border: 0.1em solid #fff; /*borde*/
+  border-radius: 0.25em;
+}
+
+/*BOTÓN DE ENVIAR*/
+.envelope form .submit-card {
+  color: white; /*color del texto*/
+  text-align: center;
+  padding: 0.5em;
+  box-sizing: border-box;
+  background: #1830bb; /*color de fondo*/
+  width: 100%;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.envelope form .input {
+  padding-bottom: 1em;
+}
+
+.envelope .paper {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  overflow: hidden;
+}
+
+.envelope .paper.back {
+  top: 0;
+}
+
+/*PAPEL DEL SOBRE INTERIOR PARTE DE ARRIBA*/
+.envelope .paper.back:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  margin-bottom: -1px;
+  border-style: solid;
+  border-width: 0 15em 10em 15em;
+  border-color: transparent transparent #d3d3d3 transparent; /*color del borde*/
+  transform-origin: bottom;
+  transform-style: preserve-3d;
+  z-index: 0;
+}
+
+/*PAPEL DEL SOBRE INTERIOR PARTE DE ABAJO*/
+.envelope .paper.back:after {
+  content: '';
+  display: block;
+  background-color: #d3d3d3; /*color del fondo*/
+  width: 30em;
+  height: 20em;
+}
+
+.envelope .paper.front {
+  top: 10em;
+  box-shadow: 0.1em 0.5em 0.5em rgba(0,0,0,0.25); /*sombra*/
+  z-index: 0;
+}
+
+.envelope .paper.front:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10em 15em 0 15em;
+  border-color: transparent #fff; /*color del borde*/
+}
+
+.envelope .paper.front:after {
+  content: '';
+  display: block;
+  width: 30em;
+  height: 10em;
+  background: #fff; /*color de fondo*/
+  margin-top: -1px;
+}
+
+/*la regla `@keyframes` define una animación llamada `envelope-front`. La animación comienza en "10em" desde arriba y termina en "0em" desde arriba.*/
+@keyframes envelope-front {
+  0 { /*posición inicial*/
+    top: 10em;
+    z-index: 0;
+  }
+  50% {
+    top: 15em;
+    z-index: 9;
+  }
+  100% { /*posición final*/
+    top: 10em;
+    z-index: 9;
+  }
+}
+
+/*En este bloque de código, definimos una animación llamada `envelope-back`. La animación comienza en la parte superior del elemento (0%) y termina en la parte inferior del elemento (100%).*/
+@keyframes envelope-back {
+  0 {
+    top: 0;
+  }
+  50% {
+    top: 5em;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+/*En este bloque de código, definimos una animación de fotogramas clave llamada `envelope-back-before`. La animación comienza en `0%`, que representa el estado inicial de la animación. La propiedad `border-color` está configurada para crear una forma triangular con un fondo transparente y un borde gris. Esta forma será el punto de partida de la animación.*/
+@keyframes envelope-back-before {
+  0 {
+    border-color: transparent transparent #d3d3d3 transparent;
+    transform: rotateX(0deg);
+    z-index: 0;
+  }
+  100% {
+    border-color: transparent transparent #fff transparent;
+    transform: rotateX(180deg);
+    z-index: 99;
+    position: relative;
+  }
+}
